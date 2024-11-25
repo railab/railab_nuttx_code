@@ -1,0 +1,18 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_OSCORE
+	tristate "Minimal OS core example"
+	default n
+	---help---
+		Enable the minimal OS core example
+
+if RAILAB_MINIMAL_OSCORE
+
+config RAILAB_MINIMAL_OSCORE_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+endif # RAILAB_MINIMAL_OSCORE

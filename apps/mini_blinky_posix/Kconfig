@@ -1,0 +1,18 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_BLINKY1
+	tristate "Minimal blinky example with files"
+	default n
+	---help---
+		Enable the minimal blinky example with files
+
+if RAILAB_MINIMAL_BLINKY1
+
+config RAILAB_MINIMAL_BLINKY1_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+endif # RAILAB_MINIMAL_BLINKY1
