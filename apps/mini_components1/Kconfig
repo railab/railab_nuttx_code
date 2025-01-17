@@ -1,0 +1,18 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_COMPONENTS1
+	tristate "Minimal NuttX components example 1"
+	default n
+	---help---
+		Enable the minimal NuttX components example 1
+
+if RAILAB_MINIMAL_COMPONENTS1
+
+config RAILAB_MINIMAL_COMPONENTS1_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+endif # RAILAB_MINIMAL_COMPONENTS1
