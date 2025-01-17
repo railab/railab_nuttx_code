@@ -1,0 +1,34 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_COMPONENTS4
+	tristate "Minimal NuttX components example 4"
+	default n
+	---help---
+		Enable the minimal NuttX components example 4
+
+if RAILAB_MINIMAL_COMPONENTS4
+
+config RAILAB_MINIMAL_COMPONENTS4_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+config RAILAB_MINIMAL_COMPONENTS4_POSIXTIMER
+	bool "singal with POSIX timer"
+	depends on !CONFIG_DISABLE_PTHREAD
+	default n
+
+config RAILAB_MINIMAL_COMPONENTS4_POSIXTIMER_SIGENV
+	bool "singal with POSIX timer"
+	depends on RAILAB_MINIMAL_COMPONENTS4_POSIXTIMER
+	depends on SIG_EVTHREAD
+	default n
+
+config RAILAB_MINIMAL_COMPONENTS4_THREAD
+	bool "singal with thread thread"
+	depends on !CONFIG_DISABLE_POSIX_TIMERS
+	default n
+
+endif # RAILAB_MINIMAL_COMPONENTS4

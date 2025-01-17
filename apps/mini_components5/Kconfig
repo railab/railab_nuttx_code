@@ -1,0 +1,41 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_COMPONENTS5
+	tristate "Minimal NuttX components example 5"
+	default n
+	---help---
+		Enable the minimal NuttX components example 5
+
+if RAILAB_MINIMAL_COMPONENTS5
+
+config RAILAB_MINIMAL_COMPONENTS5_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+config RAILAB_MINIMAL_COMPONENTS5_LIBC_FLOAT
+	bool "Enable float print"
+	default n
+	depends on LIBC_FLOATINGPOINT
+
+config RAILAB_MINIMAL_COMPONENTS5_LIBC_LONGLONG
+	bool "Enable long long print"
+	default n
+	depends on LIBC_LONG_LONG
+
+config RAILAB_MINIMAL_COMPONENTS5_LIBM
+	bool "Enable libm test"
+	default n
+	depends on RAILAB_MINIMAL_COMPONENTS5_LIBC_FLOAT
+
+config RAILAB_MINIMAL_COMPONENTS5_FIXEDMATH
+	bool "Enable fixed math test"
+	default n
+
+config RAILAB_MINIMAL_COMPONENTS5_FLOATMATH
+	bool "Enable float math test"
+	default n
+
+endif # RAILAB_MINIMAL_COMPONENTS5
