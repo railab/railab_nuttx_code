@@ -1,5 +1,5 @@
 # ##############################################################################
-# railab_nuttx_code/boards/arm/stm32/stm32-f302r8-mini/CMakeLists.txt
+# apps/mini_cannode/CMakeLists.txt
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more contributor
 # license agreements.  See the NOTICE file distributed with this work for
@@ -17,3 +17,25 @@
 # the License.
 #
 # ##############################################################################
+
+if(CONFIG_RAILAB_MINIMAL_CANNODE)
+
+  if(CONFIG_RAILAB_MINIMAL_CANNODE_CHARDEV)
+    set(CSRCS cannode_char.c)
+  endif()
+
+  if(CONFIG_RAILAB_MINIMAL_CANNODE_SOCKET)
+    set(CSRCS cannode_sock.c)
+  endif()
+
+  nuttx_add_application(
+    NAME
+    cannode
+    SRCS
+    cannode_main.c
+    STACKSIZE
+    ${CONFIG_RAILAB_MINIMAL_CANNODE_STACKSIZE})
+
+  target_sources(apps PRIVATE ${CSRCS})
+
+endif()

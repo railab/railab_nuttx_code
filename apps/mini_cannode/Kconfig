@@ -1,0 +1,43 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_CANNODE
+	tristate "Minimal CAN node example (character device)"
+	default n
+	---help---
+		Enable the minimal CAN node example
+
+if RAILAB_MINIMAL_CANNODE
+
+config RAILAB_MINIMAL_CANNODE_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+choice
+	prompt "CAN stack used"
+	default RAILAB_MINIMAL_CANNODE_INVAL
+
+config RAILAB_MINIMAL_CANNODE_CHARDEV
+	bool "CAN character device"
+	depends on CAN
+
+config RAILAB_MINIMAL_CANNODE_SOCKET
+	bool "CAN SocketCAN interface"
+	depends on CAN && NET_CAN
+
+config RAILAB_MINIMAL_CANNODE_INVAL
+	bool "CAN interface not selected"
+
+endchoice # CAN stack used
+
+config RAILAB_MINIMAL_CANNODE_NODEID
+	hex "CAN node ID (mask 0xf00)"
+	default 0x100
+
+config RAILAB_MINIMAL_CANNODE_HBSEC
+	int "CAN node heartbeat time in seconds"
+	default 1
+
+endif # RAILAB_MINIMAL_CANNODE
