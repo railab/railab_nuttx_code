@@ -1,0 +1,23 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+config RAILAB_MINIMAL_MODBUSSLAVE
+	tristate "Minimal Modbus slave example"
+	default n
+	---help---
+		Enable the minimal Modbus slave example
+
+if RAILAB_MINIMAL_MODBUSSLAVE
+
+config RAILAB_MINIMAL_MODBUSSLAVE_STACKSIZE
+	int "App stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+config RAILAB_MINIMAL_MODBUSSLAVE_SLAVEID
+	int "Modbus slave ID"
+	default 1
+	range 1 255
+
+endif # RAILAB_MINIMAL_MODBUSSLAVE

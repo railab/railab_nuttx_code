@@ -9,6 +9,17 @@ To initialize the repository use this::
 Apache NuttX and small systems series
 =====================================
 
+All tests for this series were done for  Apache NuttX with the following commits:
+
+* nuttx: ``6d629b3b36105e34f97f0439af5acaa8543c78a7``
+* nuttx-apps: ``0c467dc02d1f03f3f9f3defb16f36cb4f53b4c9d``
+
+Additionally some changes were cherry-picked to fix encountered issues.
+Ready to use branches can be found here:
+
+* https://github.com/railab/nuttx/tree/small_systems_tests
+* https://github.com/railab/nuttx-apps/tree/small_systems_tests
+
 Hello, World !
 --------------
 
@@ -151,3 +162,11 @@ Where ``CONFIG_NAME`` for a given example are given below:
 * ``mini_cannode_char`` - CAN node example with CAN character device
 
 * ``mini_cannode_sock`` - CAN node example with CAN SocketCAN interface
+
+Mini Modbus slave
+-----------------
+
+Example for www.railab.me/posts/2025/3/nuttx-and-small-systems-modbus-slave-example/
+
+  cmake -B build -S external/nuttx -DBOARD_CONFIG=../../boards/arm/stm32/nucleo-f302r8-mini/config/mini_modbusslave -GNinja
+  cmake --build build
