@@ -31,8 +31,6 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include <fixedmath.h>
 
 #include <sys/endian.h>
 #include <sys/ioctl.h>
