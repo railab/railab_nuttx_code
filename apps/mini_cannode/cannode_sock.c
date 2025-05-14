@@ -78,7 +78,7 @@ int can_init(void)
 
   memset(&addr, 0, sizeof(addr));
   addr.can_family  = AF_CAN;
-  addr.can_ifindex = 0;
+  addr.can_ifindex = 1;
 
   ret = bind(s, (struct sockaddr *)&addr, sizeof(addr));
   if (ret < 0)
