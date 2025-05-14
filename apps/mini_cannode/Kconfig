@@ -25,7 +25,7 @@ config RAILAB_MINIMAL_CANNODE_CHARDEV
 
 config RAILAB_MINIMAL_CANNODE_SOCKET
 	bool "CAN SocketCAN interface"
-	depends on CAN && NET_CAN
+	depends on NET_CAN
 
 config RAILAB_MINIMAL_CANNODE_INVAL
 	bool "CAN interface not selected"
