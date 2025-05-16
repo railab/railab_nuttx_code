@@ -206,7 +206,7 @@ void heartbeat_msg(FAR struct cannode_env_s *env, FAR struct canmsg_s *msg,
   memcpy(msg->data, &ts, sizeof(uint64_t));
 }
 
-#ifdef CONFIG_INPUT_BUTTONS
+#if defined(CONFIG_INPUT_BUTTONS) || defined(CONFIG_RAILAB_MINIMAL_CANNODE_DUMMY)
 /****************************************************************************
  * Name: button_msg
  *
@@ -234,7 +234,7 @@ void button_msg(FAR struct cannode_env_s *env, FAR struct canmsg_s *msg,
 }
 #endif
 
-#ifdef CONFIG_USERLED
+#if defined(CONFIG_USERLED) || defined(CONFIG_RAILAB_MINIMAL_CANNODE_DUMMY)
 /****************************************************************************
  * Name: thread_rx
  *
@@ -249,10 +249,13 @@ FAR void *thread_rx(FAR void* data)
   struct canmsg_s           msg;
   uint32_t                  msgid;
   int                       ret;
+#ifdef CONFIG_USERLED
   int                       fd;
+#endif
 
   DEBUGASSERT(env);
 
+#ifdef CONFIG_USERLED
   /* Initialzie LED */
 
   fd = led_init();
@@ -261,6 +264,7 @@ FAR void *thread_rx(FAR void* data)
       PRINTF("led_init failed %d\n", fd);
       return NULL;
     }
+#endif
 
   while (1)
     {
@@ -286,6 +290,7 @@ FAR void *thread_rx(FAR void* data)
             {
               case CANMSG_LED_ID:
                 {
+#ifdef CONFIG_USERLED
                   /* Set LED */
 
                   ret = led_set(fd, msg.data[0]);
@@ -293,6 +298,11 @@ FAR void *thread_rx(FAR void* data)
                     {
                       PRINTF("led_set failed %d\n", ret);
                     }
+#else
+                  /* Just print message request */
+
+                  printf("Set LED request %d\n", msg.data[0]);
+#endif
                 }
 
               /* Ignore all the rest */
@@ -383,6 +393,64 @@ FAR void *thread_button(FAR void* data)
 
   return NULL;
 }
+
+#elif defined(CONFIG_RAILAB_MINIMAL_CANNODE_DUMMY)
+/****************************************************************************
+ * Name: thread_button
+ *
+ * Description:
+ *   Simulate button state change
+ *
+ ****************************************************************************/
+
+FAR void *thread_button(FAR void* data)
+{
+  FAR struct cannode_env_s *env = (FAR struct cannode_env_s *)data;
+  struct canmsg_s           msg;
+  btn_buttonset_t           sample;
+  btn_buttonset_t           sample_last = 0;
+  int                       ret;
+
+  DEBUGASSERT(env);
+
+  /* Seed the random number generator */
+
+  srand(time(NULL));
+
+  while (1)
+    {
+      /* Sleep some random time */
+
+      sleep((rand() % 10) + 1);
+
+      /* Get button state */
+
+      sample = rand() % 2;
+
+      /* Next cycle if sample is the same */
+
+      if (sample_last == sample)
+        {
+          continue;
+        }
+
+      sample_last = sample;
+
+      /* Fill frame */
+
+      button_msg(env, &msg, sample);
+
+      /* Send frame */
+
+      ret = can_send(env->fd, &msg);
+      if (ret < 0)
+        {
+          PRINTF("can_send failed %d\n", ret);
+        }
+    }
+
+  return NULL;
+}
 #endif
 
 /****************************************************************************
@@ -398,7 +466,8 @@ int main(int argc, FAR char *argv[])
   struct cannode_env_s env;
   struct canmsg_s      msg;
   int                  ret;
-#if defined(CONFIG_USERLED) || defined(CONFIG_INPUT_BUTTONS)
+#if defined(CONFIG_USERLED) || defined(CONFIG_INPUT_BUTTONS) || \
+    defined(CONFIG_RAILAB_MINIMAL_CANNODE_DUMMY)
   struct sched_param   param;
   pthread_attr_t       attr;
 #endif
@@ -417,7 +486,7 @@ int main(int argc, FAR char *argv[])
       return -1;
     }
 
-#ifdef CONFIG_USERLED
+#if defined(CONFIG_USERLED) || defined(CONFIG_RAILAB_MINIMAL_CANNODE_DUMMY)
   pthread_t th1;
 
   /* Create CAN rx thread */
@@ -435,7 +504,7 @@ int main(int argc, FAR char *argv[])
     }
 #endif
 
-#ifdef CONFIG_INPUT_BUTTONS
+#if defined(CONFIG_INPUT_BUTTONS) || defined(CONFIG_RAILAB_MINIMAL_CANNODE_DUMMY)
   pthread_t th2;
 
   /* Create button thread */

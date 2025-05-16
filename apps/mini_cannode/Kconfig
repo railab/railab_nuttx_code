@@ -40,4 +40,10 @@ config RAILAB_MINIMAL_CANNODE_HBSEC
 	int "CAN node heartbeat time in seconds"
 	default 1
 
+config RAILAB_MINIMAL_CANNODE_DUMMY
+	bool "CAN node use dummy USERLEDS and BUTTON"
+	default n
+	---help---
+		Simulate USERLEDS nad BUTTONS driver
+
 endif # RAILAB_MINIMAL_CANNODE
