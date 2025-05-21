@@ -118,7 +118,7 @@ int can_send(int fd, FAR struct canmsg_s *msg)
   frame.cm_hdr.ch_error  = 0;
 #endif
 #ifdef CONFIG_CAN_EXTID
-  frame.cm_hdr.ch_extid  = msg->id;
+  frame.cm_hdr.ch_extid  = 1;
 #endif
   frame.cm_hdr.ch_tcf    = 0;
   memcpy(frame.cm_data, msg->data, CAN_DATA_MAX);

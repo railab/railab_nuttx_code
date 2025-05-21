@@ -133,6 +133,9 @@ int can_send(int fd, FAR struct canmsg_s *msg)
   /* Convert to SocketCAN frame */
 
   frame.can_id = msg->id;
+#ifdef CONFIG_NET_CAN_EXTID
+  frame.can_id |= CAN_EFF_FLAG;
+#endif
   frame.can_dlc = can_bytes2dlc(msg->len);
   memcpy(frame.data, msg->data, msg->len);
 
