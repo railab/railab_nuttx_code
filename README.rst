@@ -198,3 +198,9 @@ CAN node with CAN SocketCAN interface on qemu-armv7a::
 
   cmake -B build_arm2 -S external/nuttx -DBOARD_CONFIG=../../boards/arm/qemu/qemu-armv7a/configs/cannode_sock -GNinja
   cmake --build build_arm2
+
+CAN-tools utils on qemu-intel64::
+
+  cmake -B build_x86 -S external/nuttx -DBOARD_CONFIG=../../boards/x86_64/intel64/qemu-intel64/configs/canutils -GNinja
+  cmake --build build_x86
+
