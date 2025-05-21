@@ -64,8 +64,8 @@
 #define TH_CANRX_PRIORTY    100
 #define TH_BUTTON_PRIORTY   100
 
-#define TH_CANRX_STACKSIZE  512
-#define TH_BUTTON_STACKSIZE 512
+#define TH_CANRX_STACKSIZE  CONFIG_RAILAB_MINIMAL_CANNODE_RX_STACKSIZE
+#define TH_BUTTON_STACKSIZE CONFIG_RAILAB_MINIMAL_CANNODE_TX_STACKSIZE
 
 /****************************************************************************
  * Private Functions

@@ -15,6 +15,14 @@ config RAILAB_MINIMAL_CANNODE_STACKSIZE
 	int "App stack size"
 	default DEFAULT_TASK_STACKSIZE
 
+config RAILAB_MINIMAL_CANNODE_RX_STACKSIZE
+	int "CAN RX task stack size"
+	default 512
+
+config RAILAB_MINIMAL_CANNODE_TX_STACKSIZE
+	int "CAN TX task stack size"
+	default 512
+
 choice
 	prompt "CAN stack used"
 	default RAILAB_MINIMAL_CANNODE_INVAL
