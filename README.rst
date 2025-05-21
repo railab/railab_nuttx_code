@@ -170,3 +170,31 @@ Example for www.railab.me/posts/2025/3/nuttx-and-small-systems-modbus-slave-exam
 
   cmake -B build -S external/nuttx -DBOARD_CONFIG=../../boards/arm/stm32/nucleo-f302r8-mini/config/mini_modbusslave -GNinja
   cmake --build build
+
+Host-Based Development with Apache NuttX
+========================================
+
+CAN Network Simulation
+----------------------
+
+Examples for www.railab.me/posts/2025/5/host-based-dev-with-nuttx-can-network/
+
+CAN node with CAN character device on Simulator::
+
+  cmake -B build_sim1 -S external/nuttx -DBOARD_CONFIG=../../boards/sim/sim/sim/configs/cannode_char -GNinja
+  cmake --build build_sim1
+
+CAN node with CAN SocketCAN interface on Simulator::
+
+  cmake -B build_sim2 -S external/nuttx -DBOARD_CONFIG=../../boards/sim/sim/sim/configs/cannode_sock -GNinja
+  cmake --build build_sim2
+
+CAN node with CAN character device on qemu-armv7a::
+
+  cmake -B build_arm1 -S external/nuttx -DBOARD_CONFIG=../../boards/arm/qemu/qemu-armv7a/configs/cannode_char -GNinja
+  cmake --build build_arm1
+
+CAN node with CAN SocketCAN interface on qemu-armv7a::
+
+  cmake -B build_arm2 -S external/nuttx -DBOARD_CONFIG=../../boards/arm/qemu/qemu-armv7a/configs/cannode_sock -GNinja
+  cmake --build build_arm2
