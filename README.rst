@@ -9,7 +9,11 @@ To initialize the repository use this::
 Apache NuttX and small systems series
 =====================================
 
-All tests for this series were done for  Apache NuttX with the following commits:
+The configurations below are ported to Apache NuttX master from November 2026
+(see "Two years later"). The original 2024 versions are available at commit
+``87cd667``.
+
+The 2024 tests were done for Apache NuttX with the following commits:
 
 * nuttx: ``6d629b3b36105e34f97f0439af5acaa8543c78a7``
 * nuttx-apps: ``0c467dc02d1f03f3f9f3defb16f36cb4f53b4c9d``
@@ -169,6 +173,24 @@ Mini Modbus slave
 Example for www.railab.me/posts/2025/3/nuttx-and-small-systems-modbus-slave-example/
 
   cmake -B build -S external/nuttx -DBOARD_CONFIG=../../boards/arm/stm32/nucleo-f302r8-mini/config/mini_modbusslave -GNinja
+  cmake --build build
+
+Two years later
+---------------
+
+Examples for www.railab.me/posts/2026/11/nuttx-and-small-systems-two-years-later/
+
+All configurations from the series ported to Apache NuttX master:
+
+* nuttx: ``8a282a51d4259e5f05a2cb08b60f942176112f17``
+* nuttx-apps: ``cacbca22625a9a8f3aa38cde8582011a02dcfeef``
+
+Each configuration has also a ``{CONFIG_NAME}_tuned`` version that uses
+the size options added after 2024 (``CONFIG_DISABLE_ALL_SIGNALS``,
+``CONFIG_LIBC_PRINTF_MINIMAL``, ``CONFIG_SYSLOG_NONE``,
+``CONFIG_TLS_EMUTLS``)::
+
+  cmake -B build -S external/nuttx -DBOARD_CONFIG=../../boards/arm/stm32/nucleo-f302r8-mini/config/{CONFIG_NAME}_tuned -GNinja
   cmake --build build
 
 Host-Based Development with Apache NuttX
