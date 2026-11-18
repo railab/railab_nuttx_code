@@ -29,9 +29,10 @@
 #include <nuttx/config.h>
 
 #include <stdio.h>
+#include <unistd.h>
 #include <pthread.h>
 #include <semaphore.h>
-#include <nuttx/atomic.h>
+#include <stdatomic.h>
 
 /****************************************************************************
  * Pre-processor Definitions

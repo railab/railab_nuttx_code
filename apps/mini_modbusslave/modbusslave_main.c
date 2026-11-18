@@ -192,7 +192,7 @@ static int device_initialize(void)
   return OK;
 }
 
-#ifdef CONFIG_MODBUS
+#ifdef CONFIG_INDUSTRY_MODBUS
 /****************************************************************************
  * Name: modbus_initialize
  *
@@ -228,7 +228,7 @@ static int modbus_initialize(void)
 }
 #endif
 
-#ifdef CONFIG_MODBUS
+#ifdef CONFIG_INDUSTRY_MODBUS
 /****************************************************************************
  * Name: thread_modbus
  *
@@ -414,7 +414,7 @@ int main(int argc, FAR char *argv[])
       return -1;
     }
 
-#ifdef CONFIG_MODBUS
+#ifdef CONFIG_INDUSTRY_MODBUS
   /* Start Modbus thread */
 
   pthread_t th1;

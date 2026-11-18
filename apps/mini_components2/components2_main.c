@@ -30,6 +30,7 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <poll.h>
 #include <sys/epoll.h>
 

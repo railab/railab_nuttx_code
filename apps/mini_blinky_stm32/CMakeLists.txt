@@ -31,6 +31,7 @@ if(CONFIG_RAILAB_MINIMAL_BLINKY2)
   #
   # allow #include "stm32.h" and #include "arm_internal.h"
 
-  target_include_directories(apps_blinky2 PRIVATE ${CMAKE_SOURCE_DIR}/arch/arm/src/stm32)
+  target_include_directories(apps_blinky2 PRIVATE ${CMAKE_SOURCE_DIR}/arch/arm/src/stm32f3)
+  target_include_directories(apps_blinky2 PRIVATE ${CMAKE_SOURCE_DIR}/arch/arm/src/common/stm32)
   target_include_directories(apps_blinky2 PRIVATE ${CMAKE_SOURCE_DIR}/arch/arm/src/common)
 endif()

@@ -29,6 +29,7 @@
 #include <nuttx/config.h>
 
 #include <stdio.h>
+#include <unistd.h>
 #include <math.h>
 #include <fixedmath.h>
 

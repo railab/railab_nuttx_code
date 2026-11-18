@@ -29,6 +29,7 @@
 #include <nuttx/config.h>
 
 #include <stdio.h>
+#include <unistd.h>
 
 /****************************************************************************
  * Private Functions

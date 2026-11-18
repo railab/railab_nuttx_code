@@ -32,6 +32,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <poll.h>
+#include <pthread.h>
 
 #include <sys/ioctl.h>
 
