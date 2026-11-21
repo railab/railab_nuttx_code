@@ -193,6 +193,26 @@ the size options added after 2024 (``CONFIG_DISABLE_ALL_SIGNALS``,
   cmake -B build -S external/nuttx -DBOARD_CONFIG=../../boards/arm/stm32/nucleo-f302r8-mini/config/{CONFIG_NAME}_tuned -GNinja
   cmake --build build
 
+Test report
+~~~~~~~~~~~
+
+``tools/small_systems_report.py`` builds all configurations (ported and
+tuned) and the single-option variants, and writes a Markdown report::
+
+  ./tools/small_systems_report.py -j 6 -o report.md
+
+The report includes:
+
+* memory usage of every configuration compared with the 2024 baseline
+  (``tools/small_systems_baseline.txt``),
+* checks: all configurations build, no FLASH growth against the last
+  accepted results (``tools/small_systems_reference.txt``), no defconfig
+  options silently dropped by Kconfig, and the known small-system issues,
+* the effect of the new size options on ``mini_hello_opt``.
+
+The script exits with 1 if any check fails. After an accepted change,
+save the results as the new reference with ``--update-reference``.
+
 Host-Based Development with Apache NuttX
 ========================================
 
