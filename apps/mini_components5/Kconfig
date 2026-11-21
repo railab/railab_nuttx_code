@@ -23,7 +23,7 @@ config RAILAB_MINIMAL_COMPONENTS5_LIBC_FLOAT
 config RAILAB_MINIMAL_COMPONENTS5_LIBC_LONGLONG
 	bool "Enable long long print"
 	default n
-	depends on LIBC_LONG_LONG
+	depends on LIBC_PRINTF_LONG_LONG
 
 config RAILAB_MINIMAL_COMPONENTS5_LIBM
 	bool "Enable libm test"
