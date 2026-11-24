@@ -52,9 +52,13 @@ int main(int argc, FAR char *argv[])
   while (1)
     {
 #ifdef CONFIG_RAILAB_MINIMAL_COMPONENTS5_LIBC_FLOAT
-      float f1 = 0.1f;
-      float f2 = 0.2f;
-      float f3 = 0.3f;
+      /* volatile: with LTO the compiler could compute the result at build
+       * time and drop the libm code that we want to measure
+       */
+
+      volatile float f1 = 0.1f;
+      volatile float f2 = 0.2f;
+      volatile float f3 = 0.3f;
 
 #  ifdef CONFIG_RAILAB_MINIMAL_COMPONENTS5_LIBM
       /* Do some math before print */
