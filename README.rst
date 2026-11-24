@@ -182,8 +182,8 @@ Examples for www.railab.me/posts/2026/11/nuttx-and-small-systems-two-years-later
 
 All configurations from the series ported to Apache NuttX master:
 
-* nuttx: ``8a282a51d4259e5f05a2cb08b60f942176112f17``
-* nuttx-apps: ``cacbca22625a9a8f3aa38cde8582011a02dcfeef``
+* nuttx: ``b5db91fe0daa00ec54357fbfc4d33931fb22bfb8``
+* nuttx-apps: ``8ff87439bf4aa4b0ee88322cddc1dcfb052d56e6``
 
 Each configuration has also a ``{CONFIG_NAME}_tuned`` version that uses
 the size options added after 2024 (``CONFIG_DISABLE_ALL_SIGNALS``,
